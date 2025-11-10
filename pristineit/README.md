@@ -40,29 +40,6 @@ If you’ve ever felt lost in big codebases or wondered **“How should I struct
 
 ---
 
-## Project Structure (Super Clear!)
-
-```
-PristineIt/
-├── Domain/               # Pure business logic
-│   ├── Entities/Task.cs
-│   ├── ValueObjects/Priority.cs
-│   ├── ValueObjects/Tag.cs
-│   └── Repositories/ITaskRepository.cs
-│
-├── Application/          # Use cases & DTOs
-│   ├── Services/TaskService.cs
-│   └── DTOs/TaskDto.cs
-│
-├── Infrastructure/       # EF Core, Postgres, Repos
-│   ├── Persistence/TaskDbContext.cs
-│   └── Repositories/TaskRepository.cs
-│
-└── API/                  # (Optional) Web API layer
-```
-
----
-
 ## How to Run (5 Minutes!)
 
 1. **Clone the repo**
