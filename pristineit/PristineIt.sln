@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PristineIt.Application", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PristineIt.Persistence", "PristineIt.Persistence\PristineIt.Persistence.csproj", "{D7D3B9C5-C667-4360-AE86-40A22455D40D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PristineIt.Tests", "PristineIt.Tests\PristineIt.Tests.csproj", "{560FB77B-24A8-47D7-A231-7EB83BF1BFBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D7D3B9C5-C667-4360-AE86-40A22455D40D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7D3B9C5-C667-4360-AE86-40A22455D40D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7D3B9C5-C667-4360-AE86-40A22455D40D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{560FB77B-24A8-47D7-A231-7EB83BF1BFBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{560FB77B-24A8-47D7-A231-7EB83BF1BFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{560FB77B-24A8-47D7-A231-7EB83BF1BFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{560FB77B-24A8-47D7-A231-7EB83BF1BFBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

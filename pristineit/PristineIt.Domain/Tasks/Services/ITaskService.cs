@@ -1,5 +1,6 @@
 ﻿using PristineIt.Domain.Common;
 using PristineIt.Domain.Tasks.DTOs;
+using PristineIt.Domain.Tasks.Models;
 
 namespace PristineIt.Domain.Tasks.Services;
 

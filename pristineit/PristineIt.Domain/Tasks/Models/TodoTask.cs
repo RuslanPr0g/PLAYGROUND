@@ -1,6 +1,6 @@
 ﻿using PristineIt.Domain.Common;
 
-namespace PristineIt.Domain.Tasks;
+namespace PristineIt.Domain.Tasks.Models;
 
 public class TodoTask
 {

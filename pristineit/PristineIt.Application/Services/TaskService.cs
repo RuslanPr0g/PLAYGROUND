@@ -1,6 +1,6 @@
 ﻿using PristineIt.Domain.Common;
-using PristineIt.Domain.Tasks;
 using PristineIt.Domain.Tasks.DTOs;
+using PristineIt.Domain.Tasks.Models;
 using PristineIt.Domain.Tasks.Repositories;
 using PristineIt.Domain.Tasks.Services;
 
