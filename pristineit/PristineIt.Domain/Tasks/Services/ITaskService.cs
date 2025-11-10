@@ -8,4 +8,8 @@ public interface ITaskService
     Task<ValueOrResult<Guid>> CreateTask(CreateTaskDto dto);
 
     Task<ValueOrResult> AddTagToTask(AddTagToTaskDto dto);
+
+    Task<ValueOrResult> MarkTaskAsCompleted(MarkTaskAsCompletedDto dto);
+
+    Task<ValueOrResult> SnoozeTask(SnoozeTaskDto dto);
 }

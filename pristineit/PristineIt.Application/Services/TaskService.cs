@@ -73,4 +73,35 @@ public sealed class TaskService : ITaskService
         await _repository.SaveChanges();
         return ValueOrResult.Success();
     }
+
+    public async Task<ValueOrResult> MarkTaskAsCompleted(MarkTaskAsCompletedDto dto)
+    {
+        var task = await _repository.GetByIdAsync(dto.TaskId);
+        if (task is null)
+        {
+            return ValueOrResult.Failure("Task not found.");
+        }
+
+        var result = task.MarkAsCompleted();
+        if (!result.IsSuccess) return result;
+
+        // We do not need to call update because EF core handles tracking itself and
+        // knows that the entity has changed, thus creating SQL for it.
+        await _repository.SaveChanges();
+        return ValueOrResult.Success();
+    }
+
+    public async Task<ValueOrResult> SnoozeTask(SnoozeTaskDto dto)
+    {
+        var task = await _repository.GetByIdAsync(dto.TaskId);
+        if (task is null) return ValueOrResult.Failure("Task not found.");
+
+        var result = task.Snooze(dto.NewDueDate);
+        if (!result.IsSuccess) return result;
+
+        // We do not need to call update because EF core handles tracking itself and
+        // knows that the entity has changed, thus creating SQL for it.
+        await _repository.SaveChanges();
+        return ValueOrResult.Success();
+    }
 }
