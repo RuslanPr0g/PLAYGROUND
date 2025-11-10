@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PristineIt.Domain\PristineIt.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

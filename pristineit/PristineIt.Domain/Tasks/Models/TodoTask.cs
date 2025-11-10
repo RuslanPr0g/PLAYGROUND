@@ -2,10 +2,10 @@
 
 namespace PristineIt.Domain.Tasks;
 
-public class Task
+public class TodoTask
 {
     // EF needs parameterless constructor
-    private Task() { }
+    private TodoTask() { }
 
     public Guid Id { get; private set; }
     public Title Title { get; private set; } = null!;
@@ -21,12 +21,12 @@ public class Task
     public IReadOnlyCollection<Tag> Tags => _tags.AsReadOnly();
 
     // Factory method - only way to create valid Task
-    public static ValueOrResult<Task> Create(Title title, Description? description, Priority priority)
+    public static ValueOrResult<TodoTask> Create(Title title, Description? description, Priority priority)
     {
-        if (title is null) return ValueOrResult<Task>.Failure("Title is required.");
-        if (priority is null) return ValueOrResult<Task>.Failure("Priority is required.");
+        if (title is null) return ValueOrResult<TodoTask>.Failure("Title is required.");
+        if (priority is null) return ValueOrResult<TodoTask>.Failure("Priority is required.");
 
-        var task = new Task
+        var task = new TodoTask
         {
             Id = Guid.NewGuid(),
             Title = title,
@@ -36,7 +36,7 @@ public class Task
             IsCompleted = false
         };
 
-        return ValueOrResult<Task>.Success(task);
+        return ValueOrResult<TodoTask>.Success(task);
     }
 
     public ValueOrResult MarkAsCompleted()
