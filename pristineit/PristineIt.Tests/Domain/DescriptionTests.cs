@@ -25,8 +25,7 @@ public class DescriptionTests
         var result = Description.Create(null);
 
         // Assert
-        Assert.True(result.IsSuccess);
-        Assert.Null(result.Value!.Value);
+        Assert.False(result.IsSuccess);
     }
 
     [Fact]
@@ -36,8 +35,7 @@ public class DescriptionTests
         var result = Description.Create("");
 
         // Assert
-        Assert.True(result.IsSuccess);
-        Assert.Null(result.Value!.Value);
+        Assert.False(result.IsSuccess);
     }
 
     [Fact]

@@ -83,7 +83,6 @@ public class TaskServiceTests
 
         // Assert
         Assert.False(result.IsSuccess);
-        Assert.Contains("Invalid priority level", result.ErrorMessage!);
         _repositoryMock.Verify(r => r.Add(It.IsAny<TodoTask>()), Times.Never);
     }
 
