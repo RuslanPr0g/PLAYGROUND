@@ -15,6 +15,19 @@ public sealed class TaskService : ITaskService
         _repository = repository;
     }
 
+    // Read Operations
+    public async Task<IEnumerable<TodoTask>> GetTodaysTasks()
+    {
+        var today = DateTime.UtcNow.Date;
+        return await _repository.GetTasksWithinADay(today);
+    }
+
+    public async Task<IEnumerable<TodoTask>> FilterBy(string? tag, int? prio)
+    {
+        return await _repository.FilterBy(tag, prio);
+    }
+
+    // Create & Update Operations
     public async Task<ValueOrResult<Guid>> CreateTask(CreateTaskDto dto)
     {
         var titleResult = Title.Create(dto.Title);
