@@ -14,4 +14,10 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PristineIt.Application\PristineIt.Application.csproj" />
+    <ProjectReference Include="..\PristineIt.Domain\PristineIt.Domain.csproj" />
+    <ProjectReference Include="..\PristineIt.Persistence\PristineIt.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
