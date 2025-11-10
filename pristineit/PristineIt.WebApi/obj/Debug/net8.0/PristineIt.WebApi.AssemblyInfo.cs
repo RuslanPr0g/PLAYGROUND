@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PristineIt.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e282a63028d057cd351f4628f3e548e80f24c3b7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0262d5f4d9533c4e26799f1d28ac9b637f2c0964")]
 [assembly: System.Reflection.AssemblyProductAttribute("PristineIt.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PristineIt.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
