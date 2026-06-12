@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Playground (interactive)": {
+      "commandName": "Project",
+      "commandLineArgs": "interactive"
+    },
+    "Playground (list)": {
+      "commandName": "Project",
+      "commandLineArgs": "list"
+    }
+  }
+}
