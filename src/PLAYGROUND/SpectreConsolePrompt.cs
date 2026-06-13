@@ -80,7 +80,7 @@ internal class SpectreConsolePrompt : IUserPrompt
     public int[] PromptIntArrayOrChoice(string title, int[][] examples)
     {
         var choices = new List<string> { "[yellow]Enter custom array[/]" };
-        choices.AddRange(examples.Select((e, i) => $"[green]Example {i + 1}:[/] [{string.Join(", ", e)}]"));
+        choices.AddRange(examples.Select((e, i) => $"[green]Example {i + 1}:[/] [[{string.Join(", ", e)}]]"));
 
         var selected = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
@@ -96,5 +96,67 @@ internal class SpectreConsolePrompt : IUserPrompt
         // Extract the example value (remove the prefix)
         var exampleIndex = int.Parse(selected.Split(':')[0].Replace("[green]Example ", "").Replace("[/]", "")) - 1;
         return examples[exampleIndex];
+    }
+
+    public int[] PromptIntTwoRankArrayOrChoice(string title, int[][] examples)
+    {
+        var choices = new List<string> { "[yellow]Enter custom array[/]" };
+        choices.AddRange(examples.Select((e, i) => $"[green]Example {i + 1}:[/] [[{string.Join(", ", e)}]]"));
+
+        var selected = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title($"[bold]{title}[/]")
+                .AddChoices(choices)
+        );
+
+        if (selected.StartsWith("[yellow]Enter custom array[/]"))
+        {
+            return PromptIntArray(title);
+        }
+
+        var exampleIndex = int.Parse(selected.Split(':')[0].Replace("[green]Example ", "").Replace("[/]", "")) - 1;
+        return examples[exampleIndex];
+    }
+
+    public int[] PromptIntArrayOrChoice(string title, int[] examples)
+    {
+        var choices = new List<string> { "[yellow]Enter custom array[/]" };
+        choices.AddRange(examples.Select((e, i) => $"[green]Example {i + 1}:[/] {e}"));
+
+        var selected = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title($"[bold]{title}[/]")
+                .AddChoices(choices)
+        );
+
+        if (selected.StartsWith("[yellow]Enter custom array[/]"))
+        {
+            return PromptIntArray(title);
+        }
+
+        var exampleIndex = int.Parse(selected.Split(':')[0].Replace("[green]Example ", "").Replace("[/]", "")) - 1;
+        return [examples[exampleIndex]];
+    }
+
+    public int PromptIntOrChoice(string title, int example)
+    {
+        var choices = new List<string>
+        {
+            "[yellow]Enter custom value[/]",
+            $"[green]Example:[/] {example}"
+        };
+
+        var selected = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title($"[bold]{title}[/]")
+                .AddChoices(choices)
+        );
+
+        if (selected.StartsWith("[yellow]Enter custom value[/]"))
+        {
+            return AnsiConsole.Ask<int>("[bold]Enter your value:[/]");
+        }
+
+        return example;
     }
 }

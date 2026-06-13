@@ -11,4 +11,5 @@ internal interface IUserPrompt
     
     string PromptStringOrChoice(string title, string[] examples);
     int[] PromptIntArrayOrChoice(string title, int[][] examples);
+    int PromptIntOrChoice(string title, int example);
 }

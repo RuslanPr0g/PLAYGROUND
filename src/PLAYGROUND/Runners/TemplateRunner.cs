@@ -1,8 +1,8 @@
 ﻿namespace Playground.Runners;
 
-internal class GroupAnagramsConsole : RunnerBase
+internal class TemplateRunner : RunnerBase
 {
-    public override string Description => "Group anagrams from string array";
+    public override string Description => "XXXXX";
 
     public override ValueTask Run(IUserPrompt prompt)
     {
@@ -12,22 +12,22 @@ internal class GroupAnagramsConsole : RunnerBase
             "abc,bac,cab,def,fed",
             "a"
         };
-        
+
         var input = prompt.PromptStringOrChoice("Select or enter strings (comma-separated):", exampleInputs);
         var strs = input.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToArray();
-        
-        var result = GroupAnagrams(strs);
-        
+
+        var result = Do(strs);
+
         Console.WriteLine("Anagram groups:");
         foreach (var group in result)
         {
             Console.WriteLine($"  [{string.Join(", ", group)}]");
         }
-        
+
         return ValueTask.CompletedTask;
     }
 
-    public IList<IList<string>> GroupAnagrams(string[] strs)
+    public IList<IList<string>> Do(string[] strs)
     {
         var map = new Dictionary<string, IList<string>>();
 
@@ -42,6 +42,6 @@ internal class GroupAnagramsConsole : RunnerBase
             group.Add(s);
         }
 
-        return [..map.Values];
+        return [.. map.Values];
     }
 }
