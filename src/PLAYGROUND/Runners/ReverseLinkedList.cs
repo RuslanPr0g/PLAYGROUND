@@ -1,18 +1,18 @@
 namespace Playground.Runners;
 
-public class ListNode(int val = 0, ListNode? next = null)
+public class ListNodeReserse(int val = 0, ListNodeReserse? next = null)
 {
   public int val = val;
-  public ListNode? next = next;
+  public ListNodeReserse? next = next;
 }
 
 internal sealed class ReverseLinkedListRunner : RunnerBase
 {
   public override string Description => "XXXX";
 
-  public ListNode? ReverseList(ListNode? head)
+  public ListNodeReserse? ReverseList(ListNodeReserse? head)
   {
-    ListNode? prev = null;
+    ListNodeReserse? prev = null;
 
     while (head is not null)
     {
