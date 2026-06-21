@@ -1,5 +1,7 @@
 namespace Playground.Runners;
 
+// TODO: use the algo of a turtle and a rabbit (fast and slow pointers)
+
 public class ListNodeRemoveNth(int val = 0, ListNodeRemoveNth? next = null)
 {
   public int val = val;
