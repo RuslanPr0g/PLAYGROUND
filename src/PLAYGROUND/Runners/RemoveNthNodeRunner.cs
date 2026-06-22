@@ -1,7 +1,5 @@
 namespace Playground.Runners;
 
-// TODO: use the algo of a turtle and a rabbit (fast and slow pointers)
-
 public class ListNodeRemoveNth(int val = 0, ListNodeRemoveNth? next = null)
 {
   public int val = val;
@@ -36,6 +34,28 @@ internal class RemoveNthFromEndRunner : RunnerBase
     prev.next = next;
 
     return start;
+  }
+
+  public ListNodeRemoveNth RemoveNthFromEndV2(ListNodeRemoveNth head, int n)
+  {
+    ListNodeRemoveNth dummy = new ListNodeRemoveNth(0, head);
+    ListNodeRemoveNth start = dummy;
+    ListNodeRemoveNth? end = dummy;
+
+    for (var i = 0; i <= n; i++)
+    {
+      end = end?.next;
+    }
+
+    while (end is not null)
+    {
+      start = start.next!;
+      end = end.next;
+    }
+
+    start.next = start.next?.next;
+
+    return dummy.next!;
   }
 
   public override ValueTask Run(IUserPrompt prompt)
