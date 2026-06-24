@@ -2,11 +2,24 @@
 
 internal class ProductExceptSelfRunner : RunnerBase
 {
-    public override string Description => "XXXXX";
+    public override string Description => "Compute product of array except self without division";
 
     public override ValueTask Run(IUserPrompt prompt)
     {
-        ProductExceptSelf([1, 2, 3, 4]);
+        var exampleArrays = new[]
+        {
+            new[] { 1, 2, 3, 4 },
+            new[] { -1, 1, 0, -3, 3 },
+            new[] { 2, 3 }
+        };
+
+        var input = prompt.PromptIntArrayOrChoice("Select or enter the array of numbers:", exampleArrays);
+        var nums = (int[])input.Clone();
+        var result = ProductExceptSelf(nums);
+
+        Console.WriteLine($"Input:  [{string.Join(", ", input)}]");
+        Console.WriteLine($"Output: [{string.Join(", ", result)}]");
+
         return ValueTask.CompletedTask;
     }
 

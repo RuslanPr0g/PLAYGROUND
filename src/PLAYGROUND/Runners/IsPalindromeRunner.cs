@@ -2,11 +2,23 @@
 
 internal class IsPalindromeRunner : RunnerBase
 {
-    public override string Description => "XXXXX";
+    public override string Description => "Check if a string is a palindrome (alphanumeric only)";
 
     public override ValueTask Run(IUserPrompt prompt)
     {
-        IsPalindrome("A man, a plan, a canal: Panama");
+        var stringExamples = new[]
+        {
+            "A man, a plan, a canal: Panama",
+            "race a car",
+            " "
+        };
+
+        var s = prompt.PromptStringOrChoice("Select or enter a string to check:", stringExamples);
+        var result = IsPalindrome(s);
+
+        Console.WriteLine($"Input:       \"{s}\"");
+        Console.WriteLine($"Is palindrome: {result}");
+
         return ValueTask.CompletedTask;
     }
 

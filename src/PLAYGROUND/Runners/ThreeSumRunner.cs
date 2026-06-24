@@ -2,11 +2,34 @@
 
 internal class ThreeSumRunner : RunnerBase
 {
-    public override string Description => "XXXXX";
+    public override string Description => "Find all unique triplets that sum to zero";
 
     public override ValueTask Run(IUserPrompt prompt)
     {
-        var result = ThreeSum([2, -3, 0, -2, -5, -5, -4, 1, 2, -2, 2, 0, 2, -4, 5, 5, -10]);
+        var exampleArrays = new[]
+        {
+            new[] { -1, 0, 1, 2, -1, -4 },
+            new[] { 0, 1, 1 },
+            new[] { 0, 0, 0 }
+        };
+
+        var nums = prompt.PromptIntArrayOrChoice("Select or enter the array of numbers:", exampleArrays);
+        var result = ThreeSum((int[])nums.Clone());
+
+        Console.WriteLine($"Input: [{string.Join(", ", nums)}]");
+        Console.WriteLine($"Triplets that sum to zero ({result.Count} found):");
+        if (result.Count == 0)
+        {
+            Console.WriteLine("  (none)");
+        }
+        else
+        {
+            foreach (var triplet in result)
+            {
+                Console.WriteLine($"  [{string.Join(", ", triplet)}]");
+            }
+        }
+
         return ValueTask.CompletedTask;
     }
 

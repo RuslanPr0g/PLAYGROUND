@@ -2,7 +2,7 @@
 
 internal class TemplateRunner : RunnerBase
 {
-    public override string Description => "XXXXX";
+    public override string Description => "Template runner — group anagrams from a string array";
 
     public override ValueTask Run(IUserPrompt prompt)
     {

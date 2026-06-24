@@ -8,7 +8,30 @@ public class ListNodeRemoveNth(int val = 0, ListNodeRemoveNth? next = null)
 
 internal class RemoveNthFromEndRunner : RunnerBase
 {
-  public override string Description => "remove nth node";
+  public override string Description => "Remove the nth node from the end of a linked list";
+
+  public override ValueTask Run(IUserPrompt prompt)
+  {
+    var exampleArrays = new[]
+    {
+      new[] { 1, 2, 3, 4, 5 },
+      new[] { 1 },
+      new[] { 1, 2 }
+    };
+
+    var values = prompt.PromptIntArrayOrChoice("Select or enter linked list values:", exampleArrays);
+    var n = prompt.PromptIntOrChoice("Select or enter n (remove nth from end):", 2);
+    var head = FromArray(values);
+
+    Console.WriteLine($"Input:  {FormatList(head)}");
+    Console.WriteLine($"Remove: {n} node(s) from end");
+
+    var result = RemoveNthFromEndV2(head!, n);
+
+    Console.WriteLine($"Output: {FormatList(result)}");
+
+    return ValueTask.CompletedTask;
+  }
 
   public ListNodeRemoveNth? RemoveNthFromEnd(ListNodeRemoveNth? head, int n)
   {
@@ -58,9 +81,33 @@ internal class RemoveNthFromEndRunner : RunnerBase
     return dummy.next!;
   }
 
-  public override ValueTask Run(IUserPrompt prompt)
+  private static ListNodeRemoveNth? FromArray(int[] values)
   {
-    RemoveNthFromEnd(new(), 1);
-    return ValueTask.CompletedTask;
+    if (values.Length == 0)
+    {
+      return null;
+    }
+
+    var head = new ListNodeRemoveNth(values[0]);
+    var current = head;
+    for (var i = 1; i < values.Length; i++)
+    {
+      current.next = new ListNodeRemoveNth(values[i]);
+      current = current.next;
+    }
+
+    return head;
+  }
+
+  private static string FormatList(ListNodeRemoveNth? head)
+  {
+    var values = new List<int>();
+    while (head is not null)
+    {
+      values.Add(head.val);
+      head = head.next;
+    }
+
+    return values.Count == 0 ? "(empty)" : string.Join(" → ", values);
   }
 }

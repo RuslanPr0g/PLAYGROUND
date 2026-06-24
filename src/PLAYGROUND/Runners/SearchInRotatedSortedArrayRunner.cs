@@ -2,10 +2,28 @@ namespace Playground.Runners;
 
 internal class SearchInRotatedSortedArrayRunner : RunnerBase
 {
-  public override string Description => "SearchInRotatedSortedArrayRunner";
+  public override string Description => "Search for a target in a rotated sorted array";
 
   public override ValueTask Run(IUserPrompt prompt)
   {
+    var exampleArrays = new[]
+    {
+      new[] { 4, 5, 6, 7, 0, 1, 2 },
+      new[] { 1, 3 },
+      new[] { 1 }
+    };
+
+    var nums = prompt.PromptIntArrayOrChoice("Select or enter the rotated sorted array:", exampleArrays);
+    var target = prompt.PromptIntOrChoice("Select or enter the target value:", nums[0]);
+
+    var result = Search(nums, target);
+
+    Console.WriteLine($"Array:  [{string.Join(", ", nums)}]");
+    Console.WriteLine($"Target: {target}");
+    Console.WriteLine(result >= 0
+      ? $"Found at index {result} (value {nums[result]})"
+      : "Target not found");
+
     return ValueTask.CompletedTask;
   }
 

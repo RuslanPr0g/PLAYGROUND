@@ -8,7 +8,43 @@ public class ListNodeMergeK(int val = 0, ListNodeMergeK? next = null)
 
 internal class MergeKListsRunner : RunnerBase
 {
-  public override string Description => "MergeKLists";
+  public override string Description => "Merge k sorted linked lists into one sorted list";
+
+  public override ValueTask Run(IUserPrompt prompt)
+  {
+    var exampleInputs = new[]
+    {
+      "1,4,5|1,3,4|2,6",
+      "1|2|3",
+      "1,2|3,4"
+    };
+
+    var input = prompt.PromptStringOrChoice(
+      "Select or enter k sorted lists (pipe-separated lists, comma-separated values):",
+      exampleInputs);
+
+    var lists = input.Split('|')
+      .Select(part =>
+      {
+        var values = part.Split(',', StringSplitOptions.RemoveEmptyEntries)
+          .Select(s => int.Parse(s.Trim()))
+          .ToArray();
+        return FromArray(values);
+      })
+      .ToArray();
+
+    Console.WriteLine("Input lists:");
+    for (var i = 0; i < lists.Length; i++)
+    {
+      Console.WriteLine($"  List {i + 1}: {FormatList(lists[i])}");
+    }
+
+    var merged = MergeKLists(lists);
+
+    Console.WriteLine($"Merged: {FormatList(merged)}");
+
+    return ValueTask.CompletedTask;
+  }
 
   public ListNodeMergeK? MergeKLists(ListNodeMergeK?[] lists)
   {
@@ -76,9 +112,33 @@ internal class MergeKListsRunner : RunnerBase
     return result.next!;
   }
 
-  public override ValueTask Run(IUserPrompt prompt)
+  private static ListNodeMergeK? FromArray(int[] values)
   {
-    MergeKLists([]);
-    return ValueTask.CompletedTask;
+    if (values.Length == 0)
+    {
+      return null;
+    }
+
+    var head = new ListNodeMergeK(values[0]);
+    var current = head;
+    for (var i = 1; i < values.Length; i++)
+    {
+      current.next = new ListNodeMergeK(values[i]);
+      current = current.next;
+    }
+
+    return head;
+  }
+
+  private static string FormatList(ListNodeMergeK? head)
+  {
+    var values = new List<int>();
+    while (head is not null)
+    {
+      values.Add(head.val);
+      head = head.next;
+    }
+
+    return values.Count == 0 ? "(empty)" : string.Join(" → ", values);
   }
 }

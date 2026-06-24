@@ -8,7 +8,26 @@ public class ListNode(int val = 0, ListNode? next = null)
 
 internal class ReorderListRunner : RunnerBase
 {
-  public override string Description => "ddddd";
+  public override string Description => "Reorder list as L0→Ln→L1→Ln-1→...";
+
+  public override ValueTask Run(IUserPrompt prompt)
+  {
+    var exampleArrays = new[]
+    {
+      new[] { 1, 2, 3, 4 },
+      new[] { 1, 2, 3, 4, 5 },
+      new[] { 1, 2 }
+    };
+
+    var values = prompt.PromptIntArrayOrChoice("Select or enter linked list values:", exampleArrays);
+    var head = FromArray(values);
+
+    Console.WriteLine($"Input:  {FormatList(head)}");
+    ReorderList(head!);
+    Console.WriteLine($"Output: {FormatList(head)}");
+
+    return ValueTask.CompletedTask;
+  }
 
   public void ReorderList(ListNode head)
   {
@@ -54,8 +73,33 @@ internal class ReorderListRunner : RunnerBase
     return prev;
   }
 
-  public override ValueTask Run(IUserPrompt prompt)
+  private static ListNode? FromArray(int[] values)
   {
-    return ValueTask.CompletedTask;
+    if (values.Length == 0)
+    {
+      return null;
+    }
+
+    var head = new ListNode(values[0]);
+    var current = head;
+    for (var i = 1; i < values.Length; i++)
+    {
+      current.next = new ListNode(values[i]);
+      current = current.next;
+    }
+
+    return head;
+  }
+
+  private static string FormatList(ListNode? head)
+  {
+    var values = new List<int>();
+    while (head is not null)
+    {
+      values.Add(head.val);
+      head = head.next;
+    }
+
+    return values.Count == 0 ? "(empty)" : string.Join(" → ", values);
   }
 }

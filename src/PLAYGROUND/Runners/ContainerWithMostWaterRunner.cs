@@ -2,11 +2,23 @@
 
 internal class ContainerWithMostWaterRunner : RunnerBase
 {
-    public override string Description => "XXXXX";
+    public override string Description => "Find maximum water area between vertical lines";
 
     public override ValueTask Run(IUserPrompt prompt)
     {
-        Console.WriteLine(MaxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
+        var exampleArrays = new[]
+        {
+            new[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 },
+            new[] { 1, 1 },
+            new[] { 4, 3, 2, 1, 4 }
+        };
+
+        var height = prompt.PromptIntArrayOrChoice("Select or enter line heights:", exampleArrays);
+        var result = MaxArea(height);
+
+        Console.WriteLine($"Heights: [{string.Join(", ", height)}]");
+        Console.WriteLine($"Maximum area: {result}");
+
         return ValueTask.CompletedTask;
     }
 
